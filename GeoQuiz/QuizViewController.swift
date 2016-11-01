@@ -12,16 +12,16 @@ import AVFoundation
 // MARK: - QuizViewController: UIViewController
 
 class QuizViewController: UIViewController {
-  
+
     // MARK: Outlets
-    
+
     @IBOutlet weak var flagButton1: UIButton!
     @IBOutlet weak var flagButton2: UIButton!
     @IBOutlet weak var flagButton3: UIButton!
     @IBOutlet weak var repeatPhraseButton: UIButton!
-  
+
     // MARK: Properties
-    
+
     var languageChoices = [Country]()
     var lastRandomLanguageID = -1
     var selectedRow = -1
@@ -30,12 +30,15 @@ class QuizViewController: UIViewController {
     var spokenText = ""
     var bcpCode = ""
     let speechSynth = AVSpeechSynthesizer()
-    
+
     // MARK: Actions
-    
+
     // This function is called when user presses a flag button.
     @IBAction func flagButtonPressed(sender: UIButton) {
-
-        // TODO: Add code to display a message to the user telling them whether or not they guessed correctly.
+        if sender.tag == correctButtonTag {
+           displayAlert("Correct", messageText: "Right on!")
+        } else {
+          displayAlert("Incorrect", messageText: "Nope. Try again.")
+        }
     }
 }
